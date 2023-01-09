@@ -1,11 +1,6 @@
 ﻿using ClassLibrary.Interface.IServices;
 using ClassLibrary.model;
-using ClassLibrary.model.Masterlist;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 
 namespace MastersListWebApi.Controllers
 {
