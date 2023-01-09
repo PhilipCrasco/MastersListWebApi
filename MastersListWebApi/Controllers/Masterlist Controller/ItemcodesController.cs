@@ -1,14 +1,12 @@
 ﻿using ClassLibrary.Interface.IServices;
-using ClassLibrary.Persistence;
-using ClassLibrary.Services;
-using Microsoft.AspNetCore.Http;
+using ClassLibrary.model.Masterlist;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace MastersListWebApi.Controllers.Masterlist_Controller
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ItemcodesController : ControllerBase
+
+    public class ItemcodesController : BaseApiController
     {
         private readonly IUnitofWork _unitofwork;
 
@@ -35,6 +33,98 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
             var Items = await _unitofwork.itemCodes.GetAllActiveItem();
             return Ok(Items);
         }
+
+        [HttpPost]
+        [Route("AddNewItemCode")]
+
+        public async Task<IActionResult> Addnewitemcodes(ItemCode item)
+        {
+            var itemcodeuomid = await _unitofwork.itemCodes.ValidateUomId(item.UomId);
+
+            if (itemcodeuomid == false)
+            {
+                return BadRequest("The UomId doesn't exist");
+
+            }
+            if (await _unitofwork.itemCodes.ValidateCodeExist(item.ItemCodes))
+                return BadRequest("ItemCode Already Exist!, Try something else");
+
+            await _unitofwork.itemCodes.AddItem(item);
+            await _unitofwork.CompleteAsync();
+            return Ok(item);
+            
+        }
+
+        [HttpPut]
+        [Route("UpdateItem")]
+
+        public async Task<IActionResult> Updateitem([FromBody] ItemCode itemCode)
+        {
+            var validateItemid = await _unitofwork.itemCodes.UpdateItemCode(itemCode);
+            var validdateUomId = await _unitofwork.itemCodes.ValidateUomId(itemCode.UomId);
+
+            if (validateItemid == false)
+            {
+                return BadRequest("The id Doesnt Exist, Please Try Again");
+            }
+
+            if (validdateUomId == false)
+            {
+                return BadRequest("The UomId Doesnt Exist, Please Try Again");
+
+
+            }
+
+            await _unitofwork.itemCodes.UpdateItemCode(itemCode);
+            await _unitofwork.CompleteAsync();
+            return Ok(itemCode);
+
+        }
+
+        [HttpPut]
+        [Route("UpdateActiveItem")]
+
+        public async Task<IActionResult> UpdateActiveitem([FromBody] ItemCode itemCode)
+        {
+            var validateItemid = await _unitofwork.itemCodes.UpdateActiveItem(itemCode);
+         
+
+            if (validateItemid == false)
+            {
+                return BadRequest("The id Doesnt Exist, Please Try Again");
+            }
+
+            
+
+            await _unitofwork.itemCodes.UpdateActiveItem(itemCode);
+            await _unitofwork.CompleteAsync();
+            return Ok(itemCode);
+
+        }
+        [HttpPut]
+        [Route("UpdateInActiveItem")]
+
+        public async Task<IActionResult> UpdateInActiveitem([FromBody] ItemCode itemCode)
+        {
+            var validateItemid = await _unitofwork.itemCodes.UpdateInActive(itemCode);
+
+
+            if (validateItemid == false)
+            {
+                return BadRequest("The id Doesnt Exist, Please Try Again");
+            }
+
+
+
+            await _unitofwork.itemCodes.UpdateActiveItem(itemCode);
+            await _unitofwork.CompleteAsync();
+            return Ok(itemCode);
+
+        }
+
+
+
+
 
     }
 }

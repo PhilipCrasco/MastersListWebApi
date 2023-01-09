@@ -9,8 +9,12 @@ namespace ClassLibrary.model.PoSummary
         public int PrNumber { get; set; }
 
         [Column(TypeName = "Date")]
-        public DateTime PrDate { get; set; } = DateTime.Now;
+        public DateTime PrDate { get; set; } 
         public int PoNumber { get; set; }
+
+        [Column(TypeName = "Date")]
+        public DateTime PoDate { get; set; }
+
         public string ItemCodes { get; set; }
 
         public string ItemDescription { get; set; }
@@ -23,10 +27,10 @@ namespace ClassLibrary.model.PoSummary
 
         public string UOM { get; set; }
         public int Unitprice { get; set; }
-        public int Vendorname { get; set; }
+        public string Vendorname { get; set; }
 
         public bool IsActive { get; set; } = true;
-        public DateTime ImportDate { get; set; }    
+        public DateTime ImportDate { get; set; } = DateTime.Now;   
         public DateTime? ImportCancelled { get; set; }
 
 

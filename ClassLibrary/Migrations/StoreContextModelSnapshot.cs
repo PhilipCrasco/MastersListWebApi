@@ -22,7 +22,7 @@ namespace ClassLibrary.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ClassLibrary.model.ItemCode", b =>
+            modelBuilder.Entity("ClassLibrary.model.Masterlist.ItemCode", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,6 +55,34 @@ namespace ClassLibrary.Migrations
                     b.ToTable("ItemCodes");
                 });
 
+            modelBuilder.Entity("ClassLibrary.model.Masterlist.Uom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Addedby")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Dateadded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UomCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UomDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Uoms");
+                });
+
             modelBuilder.Entity("ClassLibrary.model.PoSummary.PoSummary", b =>
                 {
                     b.Property<int>("Id")
@@ -84,6 +112,9 @@ namespace ClassLibrary.Migrations
                     b.Property<decimal>("Ordered")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("PoDate")
+                        .HasColumnType("Date");
+
                     b.Property<int>("PoNumber")
                         .HasColumnType("int");
 
@@ -99,40 +130,12 @@ namespace ClassLibrary.Migrations
                     b.Property<int>("Unitprice")
                         .HasColumnType("int");
 
-                    b.Property<int>("Vendorname")
-                        .HasColumnType("int");
+                    b.Property<string>("Vendorname")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("PoSummaries");
-                });
-
-            modelBuilder.Entity("ClassLibrary.model.Uom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Addedby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Dateadded")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UomCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UomDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Uoms");
                 });
 
             modelBuilder.Entity("ClassLibrary.model.VendorName", b =>
@@ -166,9 +169,9 @@ namespace ClassLibrary.Migrations
                     b.ToTable("VendorNames");
                 });
 
-            modelBuilder.Entity("ClassLibrary.model.ItemCode", b =>
+            modelBuilder.Entity("ClassLibrary.model.Masterlist.ItemCode", b =>
                 {
-                    b.HasOne("ClassLibrary.model.Uom", "Uom")
+                    b.HasOne("ClassLibrary.model.Masterlist.Uom", "Uom")
                         .WithMany()
                         .HasForeignKey("UomId")
                         .OnDelete(DeleteBehavior.Cascade)

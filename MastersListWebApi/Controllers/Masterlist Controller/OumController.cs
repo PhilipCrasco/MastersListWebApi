@@ -1,14 +1,11 @@
 ﻿using ClassLibrary.Interface.IServices;
-using ClassLibrary.Persistence;
-using Microsoft.AspNetCore.Http;
+using ClassLibrary.model.Masterlist;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.InteropServices;
 
 namespace MastersListWebApi.Controllers.Masterlist_Controller
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OumController : ControllerBase
+
+    public class OumController : BaseApiController
     {
 
         private readonly IUnitofWork _unitofwork;
@@ -23,7 +20,7 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
         public async Task<IActionResult> GetAllActiveUoms()
         {
 
-          var oum = await _unitofwork.oums.GetAllInActiveUom();
+          var oum = await _unitofwork.oums.GetAllActiveUom();
             return Ok(oum);
 
         }
@@ -38,8 +35,79 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
 
         }
 
+        [HttpPost]
+        [Route("AddNewUom")]
+
+        public async Task<IActionResult> AddnewUoms(Uom uoms)
+        {
+            if (await _unitofwork.oums.ItemCodeExist(uoms.UomCode)) 
+            return BadRequest("The UomCode already existed, Please try another input");
+
+            if (await _unitofwork.oums.ValidateUomDescription(uoms.UomDescription))
+                return BadRequest("Uom Description already exist please Try again");
+
+            await _unitofwork.oums.AddUom(uoms);
+            await _unitofwork.CompleteAsync();
+            return Ok(uoms);
+        }
+
+        [HttpPut]
+        [Route("UpdateUom")]
+
+        public async Task<IActionResult>UpdateUOM (Uom uom)
+        {
+            var updateUom = await _unitofwork.oums.UpdateUom(uom);
+
+            if (updateUom == false)
+            {
+                return BadRequest("No existing UomId Please Try Again");
+            }
+            if (await _unitofwork.oums.ItemCodeExist(uom.UomCode))
+                return BadRequest("The UomCode already existed, Please try another input");
+
+            if (await _unitofwork.oums.ValidateUomDescription(uom.UomDescription))
+                return BadRequest("Uom Description already exist please Try again");
+
+            await _unitofwork.oums.UpdateUom(uom);
+            await _unitofwork.CompleteAsync();
+            return Ok(uom);
+        }
+
+        [HttpPut]
+        [Route("UpdateActiveUom")]
+
+        public async Task<IActionResult> UpdateActiveUOM(Uom uom)
+        {
+            var updateUom = await _unitofwork.oums.UpdateActiveUom(uom);
+
+            if (updateUom == false)
+            {
+                return BadRequest("No existing UomId Please Try Again");
+            }
 
 
+            await _unitofwork.oums.UpdateActiveUom(uom);
+            await _unitofwork.CompleteAsync();
+            return Ok(uom);
+        }
+
+        [HttpPut]
+        [Route("UpdateInActiveUom")]
+
+        public async Task<IActionResult> UpdateInActiveUOM(Uom uom)
+        {
+            var updateUom = await _unitofwork.oums.UpdateInActiveUom(uom);
+
+            if (updateUom == false)
+            {
+                return BadRequest("No existing UomId Please Try Again");
+            }
+
+
+            await _unitofwork.oums.UpdateInActiveUom(uom);
+            await _unitofwork.CompleteAsync();
+            return Ok(uom);
+        }
 
 
 

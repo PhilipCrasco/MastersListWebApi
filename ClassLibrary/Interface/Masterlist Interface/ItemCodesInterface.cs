@@ -15,6 +15,11 @@ namespace ClassLibrary.Interface.Inter_Core
 
         Task<bool> AddItem(ItemCode itemcode);
 
+        Task<bool> UpdateItemCode(ItemCode itemcode);
+        Task<bool> UpdateActiveItem(ItemCode itemcode);
+        Task<bool> UpdateInActive(ItemCode itemcode);
+
+
 
 
 
@@ -22,6 +27,7 @@ namespace ClassLibrary.Interface.Inter_Core
 
         
         Task<bool> ValidateUomId(int id);
+        
         Task<bool> ValidateCodeExist(string itemcode);
         
         

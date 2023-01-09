@@ -1,5 +1,7 @@
-﻿using ClassLibrary.Interface.Inter_Core;
+﻿using ClassLibrary.Interface.Import_Interface;
+using ClassLibrary.Interface.Inter_Core;
 using ClassLibrary.Interface.Masterlist_Interface;
+using ClassLibrary.model.PoSummary;
 using ClassLibrary.Repository.Masterlist_Repository;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,8 @@ namespace ClassLibrary.Interface.IServices
         ItemCodesInterface itemCodes { get; }
         UomInterface oums { get; }
         VendorInterface vendor { get; }
+
+        PoSummaryInterface poSummary { get; }
        
         Task CompleteAsync();
 

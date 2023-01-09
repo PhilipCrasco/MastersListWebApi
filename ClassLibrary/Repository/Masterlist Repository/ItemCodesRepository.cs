@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ClassLibrary.Repository.Masterlist_Repository
@@ -72,19 +73,74 @@ namespace ClassLibrary.Repository.Masterlist_Repository
             return true;
         }
 
-        public Task<bool> ValidateUomId(int id)
+        public async Task<bool> UpdateItemCode(ItemCode itemcode)
         {
-            throw new NotImplementedException();
+            var updateitem = await _context.ItemCodes.Where(x => x.Id == itemcode.Id)
+                                                               .FirstOrDefaultAsync();
+            if (updateitem == null)
+            {
+            
+                return false;   
+            }
+            
+               updateitem.ItemDescription = itemcode.ItemDescription;
+               updateitem.Uom.Id = itemcode.UomId;
+               updateitem.Addedby = itemcode.Addedby;
+               updateitem.Dateadded = itemcode.Dateadded;
+
+            return true;
         }
 
-        public Task<bool> ValidateCodeExist(string itemcode)
+        public async Task<bool> UpdateActiveItem(ItemCode itemcode)
         {
-            throw new NotImplementedException();
+            var updateitem = await _context.ItemCodes.Where(x => x.Id == itemcode.Id)
+                                                             .FirstOrDefaultAsync();
+
+            if(updateitem == null)
+            {
+                return false;
+            }
+
+            updateitem.IsActive = updateitem.IsActive = true;
+            return true;
         }
 
+        public async Task<bool> UpdateInActive(ItemCode itemcode)
+        {
+            var updateitem = await _context.ItemCodes.Where(x => x.Id == itemcode.Id)
+                                                             .FirstOrDefaultAsync();
+
+            if (updateitem == null)
+            {
+                return false;
+            }
+
+            updateitem.IsActive = updateitem.IsActive = false;
+            return true;
+        }
 
 
         //Validation 
+
+
+        public async Task<bool> ValidateUomId(int id)
+        {
+            var validationUomId = await _context.Uoms.FindAsync(id);
+            
+            if(validationUomId== null)
+            {
+                return false;
+            }
+            return true;
+
+            
+        }
+    
+        public async Task<bool> ValidateCodeExist(string itemcode)
+        {
+            return await _context.ItemCodes.AnyAsync(x => x.ItemCodes == itemcode);
+        }
+
 
     }
 }

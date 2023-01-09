@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ClassLibrary.Migrations
 {
-    public partial class CreateInitial : Migration
+    public partial class createinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,13 +18,14 @@ namespace ClassLibrary.Migrations
                     PrNumber = table.Column<int>(type: "int", nullable: false),
                     PrDate = table.Column<DateTime>(type: "Date", nullable: false),
                     PoNumber = table.Column<int>(type: "int", nullable: false),
+                    PoDate = table.Column<DateTime>(type: "Date", nullable: false),
                     ItemCodes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ItemDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ordered = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Delivered = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UOM = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Unitprice = table.Column<int>(type: "int", nullable: false),
-                    Vendorname = table.Column<int>(type: "int", nullable: false),
+                    Vendorname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     ImportDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ImportCancelled = table.Column<DateTime>(type: "datetime2", nullable: true)
