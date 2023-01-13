@@ -1,16 +1,8 @@
 ﻿using ClassLibrary.Data_Acess_Layer.Dto.MasterlistDto;
 using ClassLibrary.Interface.Inter_Core;
-using ClassLibrary.model;
 using ClassLibrary.model.Masterlist;
 using ClassLibrary.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace ClassLibrary.Repository.Masterlist_Repository
 {
@@ -33,14 +25,17 @@ namespace ClassLibrary.Repository.Masterlist_Repository
                                                          Id = x.Id,
                                                          ItemCodes = x.ItemCodes,
                                                          ItemDescription = x.ItemDescription,
+                                                         ItemCategoryId = x.ItemCategoryId,
+                                                         ItemCategoryDecription = x.ItemCategory.ItemCategoryName,
                                                          Uom = x.Uom.UomCode,
                                                          UomId = x.UomId,
-                                                         Dateadded= x.Dateadded,
-                                                         Addedby= x.Addedby
-                                                        
+                                                         Dateadded = x.Dateadded.ToString("MM/dd/yyyy"),
+                                                         Addedby = x.Addedby,
+                                                         IsActive = x.IsActive
 
 
-                                                     });
+
+                                                     }) ;
             return await itemscode.ToListAsync();
         }
 
@@ -52,9 +47,11 @@ namespace ClassLibrary.Repository.Masterlist_Repository
                                                         Id = x.Id,
                                                         ItemCodes = x.ItemCodes,
                                                         ItemDescription = x.ItemDescription,
+                                                        ItemCategoryId = x.ItemCategoryId,
+                                                        ItemCategoryDecription = x.ItemCategory.ItemCategoryName,
                                                         Uom = x.Uom.UomCode,
                                                         UomId = x.UomId,
-                                                        Dateadded = x.Dateadded,
+                                                        Dateadded = x.Dateadded.ToString("MM/dd/yyyy"),
                                                         Addedby = x.Addedby,
                                                         IsActive = x.IsActive
 
@@ -82,9 +79,11 @@ namespace ClassLibrary.Repository.Masterlist_Repository
             
                 return false;   
             }
-            
+
+
+            updateitem.ItemCodes = itemcode.ItemCodes;
                updateitem.ItemDescription = itemcode.ItemDescription;
-               updateitem.Uom.Id = itemcode.UomId;
+               updateitem.UomId = itemcode.UomId;
                updateitem.Addedby = itemcode.Addedby;
                updateitem.Dateadded = itemcode.Dateadded;
 
@@ -139,6 +138,16 @@ namespace ClassLibrary.Repository.Masterlist_Repository
         public async Task<bool> ValidateCodeExist(string itemcode)
         {
             return await _context.ItemCodes.AnyAsync(x => x.ItemCodes == itemcode);
+        }
+
+        public async Task<bool> ValidateItemCategoryId(int Id)
+        {
+            var validatecitemcateg = await _context.ItemCategories.FindAsync(Id);
+            if(validatecitemcateg == null)
+            {
+                return false;
+            }
+            return true;
         }
 
 

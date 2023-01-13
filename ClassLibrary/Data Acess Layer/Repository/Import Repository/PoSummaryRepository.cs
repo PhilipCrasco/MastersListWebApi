@@ -2,13 +2,14 @@
 using ClassLibrary.model.PoSummary;
 using ClassLibrary.Persistence;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary.Repository.Import_Repository
 {
     public class PoSummaryRepository : PoSummaryInterface
     {
         private readonly StoreContext _context;
-
+        
         public PoSummaryRepository(StoreContext context)
         {
             _context = context;          
@@ -50,7 +51,7 @@ namespace ClassLibrary.Repository.Import_Repository
 
         public async Task<bool> CheckUom(string uom)
         {
-            var validateuom = await _context.Uoms.Where(x=> x.UomDescription== uom)
+            var validateuom = await _context.Uoms.Where(x=> x.UomCode== uom)
                                                   .Where(x=> x.IsActive ==true)
                                                   .FirstOrDefaultAsync();
 
@@ -75,11 +76,18 @@ namespace ClassLibrary.Repository.Import_Repository
             return true;
         }
 
+
+
         public async Task<bool> ValidatePoandItemcodeManual(int ponumber, string itemcode)
         {
             var validate = await _context.PoSummaries.Where(x=> x.PoNumber == ponumber)
                                                      .Where(x=> x.ItemCodes == itemcode)
                                                      .FirstOrDefaultAsync();
+
+            if (validate == null) return false;
+
+            
+
             if (validate==null)
             {
                 return false;
@@ -87,5 +95,7 @@ namespace ClassLibrary.Repository.Import_Repository
             return true;
 
         }
+        
+
     }
 }

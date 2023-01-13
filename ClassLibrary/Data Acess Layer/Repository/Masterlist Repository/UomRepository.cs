@@ -12,11 +12,12 @@ namespace ClassLibrary.Repository.Masterlist_Repository
 
         public UomRepository(StoreContext context)
         {
-            _context = context; 
+            _context = context;
+            
         }
 
 
-
+       
         public async Task<IReadOnlyList<DtoUom>> GetAllActiveUom()
         {
             var uom = _context.Uoms.Where(x => x.IsActive == true)
@@ -26,7 +27,9 @@ namespace ClassLibrary.Repository.Masterlist_Repository
                                        UomCode= x.UomCode,
                                        UomDescription= x.UomDescription,
                                        Addedby  = x.Addedby,
-                                       Dateadded= x.Dateadded
+                                       Dateadded= x.Dateadded,
+                                       IsActive = x.IsActive
+                                       
                                        
                                    });
 
@@ -42,7 +45,8 @@ namespace ClassLibrary.Repository.Masterlist_Repository
                                     UomCode = x.UomCode,
                                     UomDescription = x.UomDescription,
                                     Addedby = x.Addedby,
-                                    Dateadded = x.Dateadded
+                                    Dateadded = x.Dateadded,
+                                    IsActive = x.IsActive
 
                                 });
 

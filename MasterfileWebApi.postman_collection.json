@@ -1,0 +1,518 @@
+{
+	"info": {
+		"_postman_id": "b893cdc4-8e67-4209-b4d1-d01af80a745a",
+		"name": "MasterfileWebApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15881054"
+	},
+	"item": [
+		{
+			"name": "ItemCodes",
+			"item": [
+				{
+					"name": "AddnewItemCodes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n  \"itemCodes\": \"string\",\r\n  \"itemDescription\": \"string\",\r\n  \"uomId\": 4,\r\n  \"dateadded\": \"2023-01-10T01:20:24.755Z\",\r\n  \"addedby\": \"string\",\r\n  \"isActive\": true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Itemcodes/AddNewItemCode",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Itemcodes",
+								"AddNewItemCode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetallactiveItemCodes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetallInActiveItemcodes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateItemCode",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " \r\n {\r\n  \"id\": 0,\r\n  \"itemCodes\": \"als1\",\r\n  \"itemDescription\": \"tanso\",\r\n   \"uomId\": 0,\r\n  \"dateadded\": \"2023-01-09T08:15:18.241Z\",\r\n  \"addedby\": \"string\"\r\n\r\n }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Itemcodes/UpdateItem",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Itemcodes",
+								"UpdateItem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateActiveItem",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 0,\r\n       \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Itemcodes/UpdateActiveItem",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Itemcodes",
+								"UpdateActiveItem"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateInActiveItem",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\": 0,\r\n      \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Itemcodes/UpdateActiveItem",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Itemcodes",
+								"UpdateActiveItem"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Uom",
+			"item": [
+				{
+					"name": "AddNewOum",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\": 0,\r\n  \"uomCode\": \"string\",\r\n  \"uomDescription\": \"string\",\r\n  \"addedby\": \"string\",\r\n  \"dateadded\": \"2023-01-09T08:31:30.353Z\",\r\n  \"isActive\": true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Oum/AddNewUom",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Oum",
+								"AddNewUom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllActiveUom",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllInActiveUom",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUom",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 9,\r\n  \"uomCode\": \"uom122\",\r\n  \"uomDescription\": \"group\",\r\n  \"addedby\": \"string\",\r\n  \"dateadded\": \"2023-01-09T08:39:57.983Z\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Oum/UpdateUom",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Oum",
+								"UpdateUom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateActiveUom",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\": 9,\r\n     \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Oum/UpdateActiveUom",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Oum",
+								"UpdateActiveUom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateInActiveUom",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\": 9,\r\n     \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Oum/UpdateInActiveUom",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Oum",
+								"UpdateInActiveUom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vendor",
+			"item": [
+				{
+					"name": "AddNewVendor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n  \"vendorCode\": \"Ve102\",\r\n  \"vendorcodeName\": \"Mercury\",\r\n  \"location\": \"San fernando\",\r\n  \"addedby\": \"string\",\r\n  \"dateAdded\": \"2023-01-09T08:47:29.143Z\",\r\n  \"isActive\": true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Vendor/AddVendors",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Vendor",
+								"AddVendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllActiveVendor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Vendor/GetAllActiveVendor",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Vendor",
+								"GetAllActiveVendor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllInActiveVendor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Vendor/GetAllInActiveVendor",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Vendor",
+								"GetAllInActiveVendor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateVendor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n \"id\": 0,\r\n  \"vendorCode\": \"string\",\r\n  \"vendorcodeName\": \"string\",\r\n  \"location\": \"string\",\r\n  \"addedby\": \"string\",\r\n  \"dateAdded\": \"2023-01-09T08:51:21.596Z\"\r\n  \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Vendor/UpdateVendor",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Vendor",
+								"UpdateVendor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateVendorActive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n \"id\": 0,\r\n  \"isActive\": true\r\n  \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Vendor/UpdateActiveVendor",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Vendor",
+								"UpdateActiveVendor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateInActiveVendor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n \"id\": 0,\r\n  \"isActive\": true\r\n  \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/Api/Vendor/UpdateInActiveVendor",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"Api",
+								"Vendor",
+								"UpdateInActiveVendor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PoSummary",
+			"item": [
+				{
+					"name": "AddPoSammary",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n          \r\n    \"prNumber\": 0,\r\n    \"prDate\": \"2023-01-09T08:56:20.849Z\",\r\n    \"poNumber\": 0,\r\n    \"poDate\": \"2023-01-09T08:56:20.849Z\",\r\n    \"itemCodes\": \"string\",\r\n    \"itemDescription\": \"string\",\r\n    \"ordered\": 0,\r\n    \"delivered\": 0,\r\n    \"uom\": \"string\",\r\n    \"unitprice\": 0,\r\n    \"vendorname\": \"string\",\r\n    \"isActive\": true\r\n    }\r\n    ,\r\n     {\r\n        \r\n    \"prNumber\": 0,\r\n    \"prDate\": \"2023-01-09T08:56:20.849Z\",\r\n    \"poNumber\": 0,\r\n    \"poDate\": \"2023-01-09T08:56:20.849Z\",\r\n    \"itemCodes\": \"string\",\r\n    \"itemDescription\": \"string\",\r\n    \"ordered\": 0,\r\n    \"delivered\": 0,\r\n    \"uom\": \"string\",\r\n    \"unitprice\": 0,\r\n    \"vendorname\": \"string\",\r\n    \"isActive\": true\r\n    }\r\n    \r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7204/api/PoSummary/AddPoSummary",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7204",
+							"path": [
+								"api",
+								"PoSummary",
+								"AddPoSummary"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

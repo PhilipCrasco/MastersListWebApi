@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.model
+namespace ClassLibrary.Interface.User_Model_Interface
 {
-    public class BaseEntity
+     public interface IUser
     {
-        public int Id { get; set; }
+
     }
 }

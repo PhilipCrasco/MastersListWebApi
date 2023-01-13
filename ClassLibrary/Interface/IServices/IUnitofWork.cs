@@ -1,13 +1,8 @@
 ﻿using ClassLibrary.Interface.Import_Interface;
 using ClassLibrary.Interface.Inter_Core;
 using ClassLibrary.Interface.Masterlist_Interface;
-using ClassLibrary.model.PoSummary;
-using ClassLibrary.Repository.Masterlist_Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ClassLibrary.Interface.User_Model_Interface;
+using ClassLibrary.Interface.WareHouse_Interface;
 
 namespace ClassLibrary.Interface.IServices
 {
@@ -19,6 +14,21 @@ namespace ClassLibrary.Interface.IServices
         VendorInterface vendor { get; }
 
         PoSummaryInterface poSummary { get; }
+
+        CustomerInterface customer { get; }
+
+        ItemCategoryInterface ItemCategory { get; }
+
+
+        //Recieving
+
+        IWareHouseReceiving wareHouseReceiving { get; }
+
+
+        // User Model
+
+        IRole roles { get; }
+        IDepartment department { get; }
        
         Task CompleteAsync();
 

@@ -13,6 +13,7 @@ namespace ClassLibrary.Interface.Inter_Core
         Task<IReadOnlyList<DtoItemcodes>> GetAllActiveItem();
         Task<IReadOnlyList<DtoItemcodes>> GetAllInActiveItem();
 
+
         Task<bool> AddItem(ItemCode itemcode);
 
         Task<bool> UpdateItemCode(ItemCode itemcode);
@@ -29,6 +30,8 @@ namespace ClassLibrary.Interface.Inter_Core
         Task<bool> ValidateUomId(int id);
         
         Task<bool> ValidateCodeExist(string itemcode);
+        Task<bool> ValidateItemCategoryId(int Id);
+    
         
         
 

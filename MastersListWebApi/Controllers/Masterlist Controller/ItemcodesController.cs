@@ -30,7 +30,7 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
         [Route("GetallInactiveItemCodes")]
         public async Task<IActionResult> GetAllInActiveItems()
         {
-            var Items = await _unitofwork.itemCodes.GetAllActiveItem();
+            var Items = await _unitofwork.itemCodes.GetAllInActiveItem();
             return Ok(Items);
         }
 
@@ -40,6 +40,11 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
         public async Task<IActionResult> Addnewitemcodes(ItemCode item)
         {
             var itemcodeuomid = await _unitofwork.itemCodes.ValidateUomId(item.UomId);
+            var itemcodeItemCategory = await _unitofwork.itemCodes.ValidateItemCategoryId(item.ItemCategoryId);
+            if( itemcodeItemCategory == false)
+            {
+                return BadRequest("The ItemCategoryId Doesnt Exist");
+            }
 
             if (itemcodeuomid == false)
             {
@@ -71,9 +76,12 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
             if (validdateUomId == false)
             {
                 return BadRequest("The UomId Doesnt Exist, Please Try Again");
-
-
             }
+
+
+
+            if (await _unitofwork.itemCodes.ValidateCodeExist(itemCode.ItemCodes))
+                return BadRequest("ItemCode Already Exist!, Try something else");
 
             await _unitofwork.itemCodes.UpdateItemCode(itemCode);
             await _unitofwork.CompleteAsync();
@@ -94,7 +102,7 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
                 return BadRequest("The id Doesnt Exist, Please Try Again");
             }
 
-            
+
 
             await _unitofwork.itemCodes.UpdateActiveItem(itemCode);
             await _unitofwork.CompleteAsync();
@@ -116,7 +124,7 @@ namespace MastersListWebApi.Controllers.Masterlist_Controller
 
 
 
-            await _unitofwork.itemCodes.UpdateActiveItem(itemCode);
+            await _unitofwork.itemCodes.UpdateInActive(itemCode);
             await _unitofwork.CompleteAsync();
             return Ok(itemCode);
 

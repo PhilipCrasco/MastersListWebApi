@@ -8,5 +8,7 @@ namespace MastersListWebApi.Controllers
     public class BaseApiController : ControllerBase
     {
 
+
+
     }
 }

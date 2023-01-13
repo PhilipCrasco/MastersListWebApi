@@ -26,6 +26,7 @@ namespace ClassLibrary.Repository.Masterlist_Repository
                                                  VendorcodeName = x.VendorcodeName,
                                                  Addedby = x.Addedby,
                                                  DateAdded= x.DateAdded,
+                                                 IsActive = x.IsActive
 
 
                                              });
@@ -43,6 +44,7 @@ namespace ClassLibrary.Repository.Masterlist_Repository
                                                  VendorcodeName = x.VendorcodeName,
                                                  Addedby = x.Addedby,
                                                  DateAdded = x.DateAdded,
+                                                 IsActive = x.IsActive
 
                                              });
             return await Vendor.ToListAsync();

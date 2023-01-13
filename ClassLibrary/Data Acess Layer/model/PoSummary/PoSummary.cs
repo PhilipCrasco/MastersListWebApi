@@ -25,6 +25,9 @@ namespace ClassLibrary.model.PoSummary
         [Column(TypeName = "decimal(18,2)")]
         public decimal Delivered { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal Billed { get; set; }
+
         public string UOM { get; set; }
         public int Unitprice { get; set; }
         public string Vendorname { get; set; }

@@ -21,22 +21,29 @@ namespace MastersListWebApi.Controllers.Import_Controller
         {
             if (ModelState.IsValid)
             {
+           
                 List<PoSummary> duplicateList = new List<PoSummary>();
                 List<PoSummary> availableimport = new List<PoSummary>();
                 List<PoSummary> vendornotexist = new List<PoSummary>();
                 List<PoSummary> itemcodenotexist = new List<PoSummary>();
                 List<PoSummary> uomodenotexist = new List<PoSummary>();
 
+                
+
                 foreach (PoSummary items in posummary)
                 {
 
                     var validatevendor = await _unitofwork.poSummary.Checkvendor(items.Vendorname);
                     var validatePoAndItem = await _unitofwork.poSummary.ValidatePoandItemcodeManual(items.PoNumber, items.ItemCodes);
+                
                     var validateItemcode = await _unitofwork.poSummary.CheckItemCode(items.ItemCodes);
                     var validationuom = await _unitofwork.poSummary.CheckUom(items.UOM);
                    
                    
-                  if (validatePoAndItem == true)
+
+               
+
+                   if (validatePoAndItem == true)
                     {
                         duplicateList.Add(items);
 
@@ -64,6 +71,7 @@ namespace MastersListWebApi.Controllers.Import_Controller
 
                 var resultlist = new
                 {
+                   
                     availableimport,
                     vendornotexist,
                     uomodenotexist,
@@ -71,8 +79,10 @@ namespace MastersListWebApi.Controllers.Import_Controller
                     duplicateList
                 };
 
-                if(duplicateList.Count==0 && vendornotexist.Count == 0 && itemcodenotexist.Count == 0 && uomodenotexist.Count==0)
+                if(duplicateList.Count==0 && vendornotexist.Count == 0 && itemcodenotexist.Count == 0 && uomodenotexist.Count==0 )
                 {
+
+
                     await _unitofwork.CompleteAsync();
                     return Ok("Successfully Add!");
                 }
