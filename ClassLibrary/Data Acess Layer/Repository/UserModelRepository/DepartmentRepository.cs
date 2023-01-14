@@ -57,19 +57,39 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
             return true;
         }
 
-        public Task<bool> UpdateDepartment(Department department)
+        public async  Task<bool> UpdateDepartment(Department department)
         {
-            throw new NotImplementedException();
+            var update = await _context.Departments.Where(x => x.Id == department.Id)
+                                                   .FirstOrDefaultAsync();
+
+            update.DepartmentName = department.DepartmentName;
+            update.DepartmentCode = department.DepartmentCode;
+            update.AddedBy= department.AddedBy;
+            update.DateAdded = department.DateAdded;
+            
+            return true;
         }
 
-        public Task<bool> UpdateActiveDepartment(Department department)
+        public async Task<bool> UpdateActiveDepartment(Department department)
         {
-            throw new NotImplementedException();
+
+            var update = await _context.Departments.Where(x => x.Id == department.Id)
+                                                  .FirstOrDefaultAsync();
+
+            update.IsActive = department.IsActive = true;
+
+            return true;
         }
 
-        public Task<bool> UpdateInActiveDepartment(Department department)
+        public async Task<bool> UpdateInActiveDepartment(Department department)
         {
-            throw new NotImplementedException();
+
+            var update = await _context.Departments.Where(x => x.Id == department.Id)
+                                                  .FirstOrDefaultAsync();
+
+            update.IsActive = department.IsActive = false;
+
+            return true;
 
         }
 

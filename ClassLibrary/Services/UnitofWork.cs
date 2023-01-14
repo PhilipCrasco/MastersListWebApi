@@ -24,7 +24,7 @@ namespace ClassLibrary.Services
         {
             _context = context;
 
-
+            user = new UsersRepsittory(_context); 
             roles = new RoleRepository(_context);
             department = new DepartmentRepository(_context);
 
@@ -57,7 +57,7 @@ namespace ClassLibrary.Services
         public ItemCategoryInterface ItemCategory { get; set; }
 
 
-
+        public IUser user { get; private set; }
         public IRole roles { get; private set; }
 
         public IDepartment department { get; private set; }
@@ -65,8 +65,7 @@ namespace ClassLibrary.Services
 
         public IWareHouseReceiving wareHouseReceiving { get; set; }
 
-
-
+      
 
         public async Task CompleteAsync()
         {

@@ -27,8 +27,10 @@ namespace ClassLibrary.Interface.IServices
 
         // User Model
 
+        IUser user { get; }
         IRole roles { get; }
         IDepartment department { get; }
+
        
         Task CompleteAsync();
 

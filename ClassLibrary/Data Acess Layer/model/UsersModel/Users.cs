@@ -14,7 +14,7 @@ namespace ClassLibrary.Data_Acess_Layer.model.UsersModel
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; }
         public Roles Roles { get; set; }
         public int RolesId { get; set; }
         public Department Department { get; set; }

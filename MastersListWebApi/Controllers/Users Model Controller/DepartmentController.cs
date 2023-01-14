@@ -1,6 +1,5 @@
 ﻿using ClassLibrary.Data_Acess_Layer.model.UsersModel;
 using ClassLibrary.Interface.IServices;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MastersListWebApi.Controllers.Users_Model_Controller
@@ -42,6 +41,56 @@ namespace MastersListWebApi.Controllers.Users_Model_Controller
             await _unitofwork.CompleteAsync();
             return Ok(department);
         }
+
+        [HttpPut]
+        [Route("UpdateDepartment")]
+        public async Task<IActionResult> Updatedepartment (Department department)
+        {
+            var validatedepartment = await _unitofwork.department.ExistingDeptId(department.Id);
+
+            if (validatedepartment == false)
+                return BadRequest("No valid Department Id");
+            if (await _unitofwork.department.ValidateDepartmentCode(department.DepartmentCode))
+                return BadRequest("Department Code Already existed");
+
+            await _unitofwork.department.UpdateDepartment(department);
+            await _unitofwork.CompleteAsync();  
+            return Ok(department);
+        }
+
+        [HttpPut]
+        [Route("UpdateActiveDepartment")]
+        public async Task<IActionResult> UpdateActivedepartment(Department department)
+        {
+            var validatedepartment = await _unitofwork.department.ExistingDeptId(department.Id);
+
+            if (validatedepartment == false)
+                return BadRequest("No valid Department Id");
+          
+
+            await _unitofwork.department.UpdateActiveDepartment(department);
+            await _unitofwork.CompleteAsync();
+            return Ok(department);
+        }
+
+        [HttpPut]
+        [Route("UpdateActiveDepartment")]
+        public async Task<IActionResult> UpdateInActivedepartment(Department department)
+        {
+            var validatedepartment = await _unitofwork.department.ExistingDeptId(department.Id);
+
+            if (validatedepartment == false)
+                return BadRequest("No valid Department Id");
+
+
+            await _unitofwork.department.UpdateInActiveDepartment(department);
+            await _unitofwork.CompleteAsync();
+            return Ok(department);
+        }
+
+
+
+
 
 
     }
