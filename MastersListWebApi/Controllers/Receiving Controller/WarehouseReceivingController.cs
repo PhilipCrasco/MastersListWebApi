@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.Data_Acess_Layer.Dto.ImportDto;
+using ClassLibrary.Data_Acess_Layer.Dto.Recieving.WareHouserReceivingDto;
 using ClassLibrary.Data_Acess_Layer.model.Receiving;
 using ClassLibrary.Extensions;
 using ClassLibrary.Helper;
@@ -28,6 +29,29 @@ namespace MastersListWebApi.Controllers.Receiving_Controller
             return Ok(receiving);
         }
 
+        [HttpPut]
+        [Route(("EditRecievingDetails"))]
+        public async Task<IActionResult> EditreceivingDetails (int id, [FromBody] Warehouse_Receiving receiving)
+        {
+            if (id == receiving.Po_SummaryID)
+                return BadRequest();
+            if (receiving.ActuallDelivered <= 0) 
+                return BadRequest("Recieved failed, please check your input in actual delivered!");
+
+            var  validatePoId = await _unitofwork.wareHouseReceiving.ValidatePoId(receiving.Po_SummaryID);
+            if (validatePoId == false)
+                return BadRequest("Update failed, PO does not exist!");
+            var validateActualGood = await _unitofwork.wareHouseReceiving.ValidateActualRemaining(receiving);
+
+            if (validateActualGood == false)
+                return BadRequest("Receive failed, You're trying to input greater than the total received!");
+
+            await _unitofwork.wareHouseReceiving.EditReceivingDetails(receiving);
+                await _unitofwork.CompleteAsync();
+            return Ok(receiving);
+
+        }
+
 
         [HttpGet]
         [Route("GetAllAvailablePoWithPagination")]
@@ -52,8 +76,6 @@ namespace MastersListWebApi.Controllers.Receiving_Controller
             return Ok(posummaryResult);
 
         }
-
-
 
         [HttpGet]
         [Route("GetAllAvailablePowithPaginationOrig")]
@@ -96,11 +118,51 @@ namespace MastersListWebApi.Controllers.Receiving_Controller
 
         }
 
+        [HttpGet]
+        [Route("GetAllCancelledPOWithPagination")]
+        public async Task<ActionResult<IEnumerable<DtoCancelled>>> GetAllCancelledWithPagination([FromQuery] UserParameter UserParams)
+        {
+            var cancel = await _unitofwork.wareHouseReceiving.GetAllCancelledPoWithPagination(UserParams);
+            
+            Response.AddPaginationHeader(cancel.CurrentPage , cancel.PageSize , cancel.TotalCount , cancel.TotalPages ,cancel.HasNextPage , cancel.HasPreviousPage );
 
-        
+            var warehouseResult = new
+            {
+                cancel,
+                cancel.CurrentPage,
+                cancel.PageSize,
+                cancel.TotalCount,
+                cancel.TotalPages,
+                cancel.HasNextPage,
+                cancel.HasPreviousPage
+            };
+            return Ok (warehouseResult);
+        }
+
+        [HttpGet]
+        [Route("GetAllCancelledPOWithPaginationOrig")]
+        public async Task<ActionResult<IEnumerable<DtoCancelled>>> GetAllCancelledWithPaginationOrig([FromQuery] UserParameter UserParams, [FromQuery] string search)
+        {
+            if (search == null)
+                return await GetAllCancelledWithPagination(UserParams);
+            var cancel = await _unitofwork.wareHouseReceiving.GetAllCancelledPoWithPaginationOrig(UserParams, search);
+
+            Response.AddPaginationHeader(cancel.CurrentPage, cancel.PageSize, cancel.TotalCount, cancel.TotalPages, cancel.HasNextPage, cancel.HasPreviousPage);
+
+            var warehouseResult = new
+            {
+                cancel,
+                cancel.CurrentPage,
+                cancel.PageSize,
+                cancel.TotalCount,
+                cancel.TotalPages,
+                cancel.HasNextPage,
+                cancel.HasPreviousPage
+            };
+            return Ok(warehouseResult);
+        }
 
 
-      
 
 
 

@@ -32,6 +32,8 @@ namespace ClassLibrary.model.PoSummary
         public int Unitprice { get; set; }
         public string Vendorname { get; set; }
 
+        public string Reasons { get; set; }
+
         public bool IsActive { get; set; } = true;
         public DateTime ImportDate { get; set; } = DateTime.Now;   
         public DateTime? ImportCancelled { get; set; }

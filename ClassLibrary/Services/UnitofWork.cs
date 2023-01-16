@@ -27,6 +27,7 @@ namespace ClassLibrary.Services
             user = new UsersRepsittory(_context); 
             roles = new RoleRepository(_context);
             department = new DepartmentRepository(_context);
+            mainmenu = new MainmenuRepository(_context);
 
 
             itemCodes = new ItemCodesRepository(_context);
@@ -35,6 +36,7 @@ namespace ClassLibrary.Services
             poSummary = new PoSummaryRepository(_context);
             customer = new CustomerRepository(_context);
             ItemCategory = new ItemCategoryRepository(_context);
+
 
             wareHouseReceiving = new WarehouseReceivingRepository(_context);
 
@@ -59,13 +61,13 @@ namespace ClassLibrary.Services
 
         public IUser user { get; private set; }
         public IRole roles { get; private set; }
-
         public IDepartment department { get; private set; }
+        public IMainmenu mainmenu { get; private set; }
 
 
         public IWareHouseReceiving wareHouseReceiving { get; set; }
 
-      
+        
 
         public async Task CompleteAsync()
         {

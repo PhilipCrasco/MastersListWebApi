@@ -30,6 +30,7 @@ namespace ClassLibrary.Interface.IServices
         IUser user { get; }
         IRole roles { get; }
         IDepartment department { get; }
+      IMainmenu mainmenu { get; }
 
        
         Task CompleteAsync();
