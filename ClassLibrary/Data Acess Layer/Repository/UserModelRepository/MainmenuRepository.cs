@@ -17,6 +17,14 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
 
         public async Task<bool> AddNewMainmenu(MainMenu mainmenu)
         {
+
+            mainmenu.AddedBy = "Admin";
+            mainmenu.ModifiedBy = "Admin";
+
+            if (mainmenu.AddedBy == null)
+                mainmenu.AddedBy = "Admin";
+
+            
             await _context.Mainmenu.AddAsync(mainmenu);
             return true;
         }
@@ -32,6 +40,7 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
                                                 ModuleName= x.ModuleName,
                                                 DateAdded = x.DateAdded.ToString("MM/dd/yyyy"),
                                                 AddedBy= x.AddedBy,
+                                                ModifiedBy = x.ModifiedBy,
                                                 MenuPath= x.MenuPath,
                                                 IsActive= x.IsActive
 
@@ -50,6 +59,7 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
                                                 ModuleName = x.ModuleName,
                                                 DateAdded = x.DateAdded.ToString("MM/dd/yyyy"),
                                                 AddedBy = x.AddedBy,
+                                                ModifiedBy = x.ModifiedBy,
                                                 MenuPath = x.MenuPath,
                                                 IsActive = x.IsActive
 
@@ -67,8 +77,10 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
 
            mainmenu.ModuleName = main.ModuleName;
             mainmenu.MenuPath = main.MenuPath;
-            mainmenu.AddedBy = main.AddedBy;
-            mainmenu.DateAdded = main.DateAdded;
+            mainmenu.ModifiedBy = main.ModifiedBy;
+
+            if (main.ModifiedBy == null)
+                mainmenu.ModifiedBy = "Admin";
 
             return true;
         }
@@ -79,7 +91,6 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
                                                    .FirstOrDefaultAsync();
 
             mainmenu.IsActive = main.IsActive = true;
-
             return true;
         }
 
@@ -89,7 +100,6 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
                                                   .FirstOrDefaultAsync();
 
             mainmenu.IsActive = main.IsActive = false;
-
             return true;
         }
 
@@ -100,6 +110,7 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.UserModelRepository
 
             if(valid == null)
                 return false;
+            
             return true;
         }
         public async Task<bool> ExistModuleName(string modulename)

@@ -230,6 +230,9 @@ namespace ClassLibrary.Migrations
                     b.Property<string>("MenuPath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ModuleName")
                         .HasColumnType("nvarchar(max)");
 
@@ -291,6 +294,9 @@ namespace ClassLibrary.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RoleCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RoleName")
                         .HasColumnType("nvarchar(max)");
 
@@ -344,8 +350,8 @@ namespace ClassLibrary.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -480,6 +486,9 @@ namespace ClassLibrary.Migrations
 
                     b.Property<int>("PrNumber")
                         .HasColumnType("int");
+
+                    b.Property<string>("Reasons")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UOM")
                         .HasColumnType("nvarchar(max)");

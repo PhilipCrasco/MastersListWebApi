@@ -296,7 +296,7 @@ namespace ClassLibrary.Data_Acess_Layer.Repository.Receiving_Repository
                             }).Where(x => x.IsActive == false)
                               .Where(x => x.DateCancelled != null)
                               .Where(x => Convert.ToString(x.PoNumber).ToLower()
-                               .Contains(search.Trim().ToLower()));
+                              .Contains(search.Trim().ToLower()));
 
             return await PagedList<DtoCancelled>.CreateAsync(cancelpo, userParams.PageNumber, userParams.PageSize);
         }

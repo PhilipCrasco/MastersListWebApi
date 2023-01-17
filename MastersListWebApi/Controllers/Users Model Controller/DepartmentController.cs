@@ -74,7 +74,7 @@ namespace MastersListWebApi.Controllers.Users_Model_Controller
         }
 
         [HttpPut]
-        [Route("UpdateActiveDepartment")]
+        [Route("UpdateInActiveDepartment")]
         public async Task<IActionResult> UpdateInActivedepartment(Department department)
         {
             var validatedepartment = await _unitofwork.department.ExistingDeptId(department.Id);

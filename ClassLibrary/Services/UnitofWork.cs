@@ -28,6 +28,7 @@ namespace ClassLibrary.Services
             roles = new RoleRepository(_context);
             department = new DepartmentRepository(_context);
             mainmenu = new MainmenuRepository(_context);
+            module = new ModuleRepository(_context);
 
 
             itemCodes = new ItemCodesRepository(_context);
@@ -63,11 +64,12 @@ namespace ClassLibrary.Services
         public IRole roles { get; private set; }
         public IDepartment department { get; private set; }
         public IMainmenu mainmenu { get; private set; }
+        public IModule module { get; private set; }
 
 
         public IWareHouseReceiving wareHouseReceiving { get; set; }
 
-        
+       
 
         public async Task CompleteAsync()
         {

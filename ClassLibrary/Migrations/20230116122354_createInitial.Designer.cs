@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassLibrary.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20230112081041_CreateUsers")]
-    partial class CreateUsers
+    [Migration("20230116122354_createInitial")]
+    partial class createInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -232,6 +232,9 @@ namespace ClassLibrary.Migrations
                     b.Property<string>("MenuPath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ModuleName")
                         .HasColumnType("nvarchar(max)");
 
@@ -293,6 +296,9 @@ namespace ClassLibrary.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RoleCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RoleName")
                         .HasColumnType("nvarchar(max)");
 
@@ -346,8 +352,8 @@ namespace ClassLibrary.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -482,6 +488,9 @@ namespace ClassLibrary.Migrations
 
                     b.Property<int>("PrNumber")
                         .HasColumnType("int");
+
+                    b.Property<string>("Reasons")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UOM")
                         .HasColumnType("nvarchar(max)");

@@ -16,6 +16,8 @@ namespace ClassLibrary.Data_Acess_Layer.model.UsersModel
         public string ModuleName { get; set; }
         public DateTime DateAdded { get; set; } = DateTime.Now;
         public string AddedBy { get; set; }
+
+        public string ModifiedBy { get; set; }
         public bool ISActive { get; set; } = true;
 
         

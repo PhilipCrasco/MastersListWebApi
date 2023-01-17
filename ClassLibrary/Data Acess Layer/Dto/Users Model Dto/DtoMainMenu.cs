@@ -14,5 +14,7 @@ namespace ClassLibrary.Data_Acess_Layer.Dto.Users_Model_Dto
         public string AddedBy { get; set; }
         public bool IsActive { get; set; } = true;
         public string MenuPath { get; set; }
+
+        public string ModifiedBy { get; set; }
     }
 }
